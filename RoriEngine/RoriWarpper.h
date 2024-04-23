@@ -8,7 +8,7 @@ namespace RoriDef {
 	const int WindowW = 768, WindowH = 768;
 
 	struct Color {
-		unsigned __int8 r, g, b, a;//a:Í¸Ã÷¶È
+		unsigned __int8 r, g, b, a;//a:transparency
 		Color(unsigned __int8 r2 = 0, unsigned __int8 g2 = 0, unsigned __int8 b2 = 0, unsigned __int8 a2 = 0):r(r2), g(g2), b(b2), a(a2){}
 		const Color operator*(const Color *that) const {//see https://blog.csdn.net/mkr67n/article/details/117026093
 			unsigned __int16	r1 = this->r, g1 = this->g, b1 = this->b, a1 = this->a,
@@ -76,6 +76,9 @@ namespace PlatformAPI {
 			BYTE empty;
 		};
 
+		#pragma warning(push)
+		#pragma warning(disable:6386)
+
 		void LoadImage(RoriDef::Image& img, std::wstring loc) {
 			if (img.data != nullptr) delete[] img.data;
 
@@ -97,5 +100,6 @@ namespace PlatformAPI {
 				}
 			}
 		}
+		#pragma warning(pop)
 	}
 }
